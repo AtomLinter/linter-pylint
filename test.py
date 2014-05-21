@@ -15,7 +15,7 @@ import singleton
 import os
 import socket
 import ctypes
-from struct import pack
+.. ,  s from struct import pack
 
 from SimpleXMLRPCServer import SimpleXMLRPCServer
 from api import MySimpleXMLRPCRequestHandler
@@ -212,7 +212,7 @@ class Main:
             try:
                 from PyQt4 import QtCore, QtGui
             except Exception as err:
-                print 'PyBitmessage requires PyQt unless you want to run it as a daemon and interact with it using the API. You can download PyQt from http://www.riverbankcomputing.com/software/pyqt/download   or by searching Google for \'PyQt Download\'. If you want to run in daemon mode, see https://bitmessage.org/wiki/Daemon'
+              print 'PyBitmessage requires PyQt unless you want to run it as a daemon and interact with it using the API. You can download PyQt from http://www.riverbankcomputing.com/software/pyqt/download   or by searching Google for \'PyQt Download\'. If you want to run in daemon mode, see https://bitmessage.org/wiki/Daemon'
                 print 'Error message:', err
                 os._exit(0)
 
