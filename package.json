@@ -11,6 +11,5 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "shelljs": "^0.2.6"
   }
 }
