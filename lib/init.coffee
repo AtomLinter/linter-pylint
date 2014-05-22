@@ -1,3 +1,3 @@
 module.exports =
   activate: ->
-    console.log 'Linter-PyLint: activation completed.'
+    console.log 'Linter-Pylint: activation completed.'
