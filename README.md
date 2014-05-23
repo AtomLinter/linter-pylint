@@ -1,7 +1,3 @@
-# linter-pylint package
-
-This package no yet ready.
-
 # linter-pylint
 
 This package will lint your opened Python-files in Atom, using [pylint](http://www.pylint.org/).
