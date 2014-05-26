@@ -3,7 +3,7 @@
   "linter-package": true,
   "activationEvents": [],
   "main": "./lib/init",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Lint python on the fly, using pylint",
   "repository": "https://github.com/AtomLinter/linter-pylint",
   "license": "MIT",
