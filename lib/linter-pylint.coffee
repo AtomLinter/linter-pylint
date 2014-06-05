@@ -14,7 +14,7 @@ class LinterPylint extends Linter
   regexFlags: 'm'
 
   constructor: (@editor) ->
-    exec 'pylint --version', @executionCheckHandler
+    exec 'pylint --version', cwd: @cwd, @executionCheckHandler
     console.log 'Linter-Pylint: initialization completed'
 
   # Private: handles the initial 'version' call, extracts the version and
@@ -22,7 +22,10 @@ class LinterPylint extends Linter
   executionCheckHandler: (error, stdout, stderr) =>
     versionRegEx = /pylint ([\d\.]+)\,/
     if not versionRegEx.test(stdout)
-      console.error "Linter-Pylint: 'pylint' was not executable: " + stdout ? stderr
+      result = if error? then '#' + error.code + ': ' else ''
+      result += 'stdout: ' + stdout if stdout.length > 0
+      result += 'stderr: ' + stderr if stderr.length > 0
+      console.error "Linter-Pylint: 'pylint' was not executable: " + result
     else
       console.log "Linter-Pylint: found pylint " + versionRegEx.exec(stdout)[1]
       @enabled = true # everything is fine, the linter is ready to work
