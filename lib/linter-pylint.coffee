@@ -32,7 +32,11 @@ class LinterPylint extends Linter
 
   lintFile: (filePath, callback) =>
     if @enabled # disabled if the lint-executable is not reachable - see initialization
-      exec @getCmd(filePath), {cwd: @cwd}, (error, stdout, stderr) =>
+      command = @getCmdAndArgs(filePath).command +
+        ' ' +
+        @getCmdAndArgs(filePath).args.join(' ')
+
+      exec command, {cwd: @cwd}, (error, stdout, stderr) =>
         console.error "Linter-Pylint: " + error if error
         @processMessage(stdout, callback)
 
