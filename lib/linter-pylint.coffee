@@ -37,6 +37,7 @@ class LinterPylint extends Linter
         @getCmdAndArgs(filePath).args.join(' ')
 
       exec command, {cwd: @cwd}, (error, stdout, stderr) =>
+        console.error "Linter-Pylint: " + error if error
         @processMessage(stdout, callback)
 
 module.exports = LinterPylint
