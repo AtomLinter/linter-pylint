@@ -16,6 +16,9 @@ There are other linters available - take a look at the linters [mainpage](https:
 
 ## Changelog
 
+### dev
+ - fix debug mode [#9](https://github.com/AtomLinter/linter-pylint#9)
+
 ### 0.1.1
  - fix 'has no method getCmd' bug [#4](https://github.com/AtomLinter/linter-pylint#4)
 
