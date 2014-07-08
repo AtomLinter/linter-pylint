@@ -37,6 +37,9 @@ class LinterPylint extends Linter
         @getCmdAndArgs(filePath).args.join(' ')
 
       exec command, {cwd: @cwd}, (error, stdout, stderr) =>
+        if atom.config.get('linter.lintDebug')
+          console.warn 'stderr', stderr
+          console.log 'stdout', stdout
         @processMessage(stdout, callback)
 
 module.exports = LinterPylint
