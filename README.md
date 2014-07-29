@@ -16,7 +16,7 @@ There are other linters available - take a look at the linters [mainpage](https:
 
 ## Changelog
 
-### dev
+### 0.1.3
  - Display pylint message ids
  - Fix debug mode [#9](https://github.com/AtomLinter/linter-pylint#9)
  - Use project directory as cwd (works better with Atom projects)
