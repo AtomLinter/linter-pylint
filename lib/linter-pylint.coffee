@@ -14,6 +14,9 @@ class LinterPylint extends Linter
   regexFlags: 'm'
 
   constructor: (@editor) ->
+    super @editor  # sets @cwd to the dirname of the current file
+    # if we're in a project, use that path instead
+    @cwd = atom.project.path ? @cwd
     exec 'pylint --version', cwd: @cwd, @executionCheckHandler
     console.log 'Linter-Pylint: initialization completed'
 
