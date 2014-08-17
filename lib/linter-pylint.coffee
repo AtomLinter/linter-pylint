@@ -6,15 +6,15 @@ Linter = require "#{linterPath}/lib/linter"
 class LinterPylint extends Linter
   @enabled = false # false until executable checked
   @syntax: 'source.python' # fits all *.py-files
-  cmd: "pylint
-          --msg-template='{line},{column},{category},{msg_id}: {msg}'
-          --reports=n"
+  cmd: ['pylint'
+        "--msg-template='{line},{column},{category},{msg_id}:{msg}'"
+        '--reports=n']
 
   linterName: 'pylint'
 
   regex: '^(?<line>\\d+),(?<col>\\d+),\
           ((?<error>error)|(?<warning>warning)),\
-          (?<msg_id>\\w\\d+):\\s(?<message>.*)$'
+          (?<msg_id>\\w\\d+):(?<message>.*)$'
   regexFlags: 'm'
 
   constructor: (@editor) ->
