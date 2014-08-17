@@ -16,13 +16,17 @@ There are other linters available - take a look at the linters [mainpage](https:
 
 ## Changelog
 
+### 0.1.4
+ - Fix lint message display on Windows [#15](https://github.com/AtomLinter/linter-pylint/issues/15)
+
+
 ### 0.1.3
  - Display pylint message ids
- - Fix debug mode [#9](https://github.com/AtomLinter/linter-pylint#9)
+ - Fix debug mode [#9](https://github.com/AtomLinter/linter-pylint/issues/9)
  - Use project directory as cwd (works better with Atom projects)
 
 ### 0.1.2
- - fix 'has no method getCmd' bug [#4](https://github.com/AtomLinter/linter-pylint#4)
+ - fix 'has no method getCmd' bug [#4](https://github.com/AtomLinter/linter-pylint/issues/4)
 
 ### 0.1.0
 
