@@ -40,10 +40,8 @@ class LinterPylint extends Linter
 
   lintFile: (filePath, callback) =>
     if @enabled
-      command = @getCmdAndArgs(filePath).command +
-        ' ' +
-        @getCmdAndArgs(filePath).args.join(' ')
-
+      cmdargs = @getCmdAndArgs(filePath)
+      command = cmdargs.command + ' ' + cmdargs.args.join(' ')
       exec command, {cwd: @cwd}, (error, stdout, stderr) =>
         warn 'stderr', stderr
         log 'stdout', stdout
