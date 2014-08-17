@@ -1,6 +1,7 @@
 {exec, child} = require 'child_process'
 linterPath = atom.packages.getLoadedPackage("linter").path
 Linter = require "#{linterPath}/lib/linter"
+{log, warn} = require "#{linterPath}/lib/utils"
 
 
 class LinterPylint extends Linter
@@ -22,7 +23,7 @@ class LinterPylint extends Linter
     # if we're in a project, use that path instead
     @cwd = atom.project.path ? @cwd
     exec 'pylint --version', cwd: @cwd, @executionCheckHandler
-    console.log 'Linter-Pylint: initialization completed'
+    log 'Linter-Pylint: initialization completed'
 
   # Private: handles the initial 'version' call, extracts the version and
   # enables the linter
@@ -34,7 +35,7 @@ class LinterPylint extends Linter
       result += 'stderr: ' + stderr if stderr.length > 0
       console.error "Linter-Pylint: 'pylint' was not executable: " + result
     else
-      console.log "Linter-Pylint: found pylint " + versionRegEx.exec(stdout)[1]
+      log "Linter-Pylint: found pylint " + versionRegEx.exec(stdout)[1]
       @enabled = true # everything is fine, the linter is ready to work
 
   lintFile: (filePath, callback) =>
@@ -44,9 +45,8 @@ class LinterPylint extends Linter
         @getCmdAndArgs(filePath).args.join(' ')
 
       exec command, {cwd: @cwd}, (error, stdout, stderr) =>
-        if atom.config.get('linter.lintDebug')
-          console.warn 'stderr', stderr
-          console.log 'stdout', stdout
+        warn 'stderr', stderr
+        log 'stdout', stdout
         @processMessage(stdout, callback)
 
   formatMessage: (match) ->
