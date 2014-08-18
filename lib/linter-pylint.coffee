@@ -46,6 +46,8 @@ class LinterPylint extends Linter
         warn 'stderr', stderr
         log 'stdout', stdout
         @processMessage(stdout, callback)
+    else
+      @processMessage "", callback
 
   formatMessage: (match) ->
     "#{match.msg_id}: #{match.message}"
