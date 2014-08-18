@@ -1,4 +1,4 @@
-{exec, child} = require 'child_process'
+{exec} = require 'child_process'
 linterPath = atom.packages.getLoadedPackage("linter").path
 Linter = require "#{linterPath}/lib/linter"
 {log, warn} = require "#{linterPath}/lib/utils"
@@ -40,12 +40,7 @@ class LinterPylint extends Linter
 
   lintFile: (filePath, callback) =>
     if @enabled
-      cmdargs = @getCmdAndArgs(filePath)
-      command = cmdargs.command + ' ' + cmdargs.args.join(' ')
-      exec command, {cwd: @cwd}, (error, stdout, stderr) =>
-        warn 'stderr', stderr
-        log 'stdout', stdout
-        @processMessage(stdout, callback)
+      super filePath, callback
     else
       @processMessage "", callback
 
