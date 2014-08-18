@@ -16,7 +16,7 @@ There are other linters available - take a look at the linters [mainpage](https:
 
 ## Changelog
 
-### 0.1.4
+### 0.1.5
  - Fix lint message display on Windows [#15](https://github.com/AtomLinter/linter-pylint/issues/15)
  - Fix temporary file leak when pylint isn't present
 
