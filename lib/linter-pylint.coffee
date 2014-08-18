@@ -40,8 +40,11 @@ class LinterPylint extends Linter
 
   lintFile: (filePath, callback) =>
     if @enabled
+      # Only lint when pylint is present
       super filePath, callback
     else
+      # Otherwise it's important that we call @processMessage to avoid leaking
+      # the temporary file.
       @processMessage "", callback
 
   formatMessage: (match) ->
