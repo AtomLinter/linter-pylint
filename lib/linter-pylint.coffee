@@ -28,14 +28,14 @@ class LinterPylint extends Linter
   # Private: handles the initial 'version' call, extracts the version and
   # enables the linter
   executionCheckHandler: (error, stdout, stderr) =>
-    versionRegEx = /pylint ([\d\.]+)\,/
+    versionRegEx = /pylint(-script.py)? ([\d\.]+)\,/
     if not versionRegEx.test(stdout)
       result = if error? then '#' + error.code + ': ' else ''
       result += 'stdout: ' + stdout if stdout.length > 0
       result += 'stderr: ' + stderr if stderr.length > 0
       console.error "Linter-Pylint: 'pylint' was not executable: " + result
     else
-      log "Linter-Pylint: found pylint " + versionRegEx.exec(stdout)[1]
+      log "Linter-Pylint: found pylint " + versionRegEx.exec(stdout).slice(-1)[0]
       @enabled = true # everything is fine, the linter is ready to work
 
   lintFile: (filePath, callback) =>
