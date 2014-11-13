@@ -18,12 +18,25 @@ class LinterPylint extends Linter
           (?<msg_id>\\w\\d+):(?<message>.*)$'
   regexFlags: 'm'
 
+  rcfilePath: null
+
   constructor: (@editor) ->
     super @editor  # sets @cwd to the dirname of the current file
+
+    # Path to configuration file, defined in settings
+    atom.config.observe 'linter-pylint.rcfilePath', =>
+      @rcfilePath = atom.config.get 'linter-pylint.rcfilePath'
+
+    if @rcfilePath
+      @cmd.push "--rcfile=#{@rcfilePath}"
+
     # if we're in a project, use that path instead
     @cwd = atom.project.path ? @cwd
     exec 'pylint --version', cwd: @cwd, @executionCheckHandler
     log 'Linter-Pylint: initialization completed'
+
+  destroy: ->
+    atom.config.unobserve 'linter-pylint.rcfilePath'
 
   # Private: handles the initial 'version' call, extracts the version and
   # enables the linter

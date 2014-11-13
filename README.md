@@ -9,7 +9,10 @@ This package will lint your opened Python-files in Atom, using [pylint](http://w
 * `$ apm install linter-pylint`
 
 ## Settings
-Linter-pylint offers currently no settings.
+You can configure the path to a configuration file:
+
+    'linter-pylint':
+      'rcfilePath': 'config/pylint.rc'
 
 ## Other available linters
 There are other linters available - take a look at the linters [mainpage](https://github.com/AtomLinter/Linter).
