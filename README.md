@@ -9,11 +9,12 @@ This package will lint your opened Python-files in Atom, using [pylint](http://w
 * `$ apm install linter-pylint`
 
 ## Settings
-You can set the pylint executable in the atom config
+You can set the pylint executable and rc in the atom config
 
 ```
 'linter-pylint':
-  'pylintExecutable': '/usr/bin/pylint'
+  'executable': '/usr/bin/pylint'
+  'rcFile': 'config/pylint.rc'
 ```
 
 This is useful if you have different versions of pylint for Python 2 and 3 or if you are using a virtualenv
