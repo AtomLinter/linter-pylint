@@ -23,26 +23,23 @@ class LinterPylint extends Linter
 
     # Set to observe config options
     atom.config.observe 'linter-pylint.executable', => @updateCommand()
-    atom.config.observe 'linter-pyling.rcFile', => @updateCommand()
+    atom.config.observe 'linter-pylint.rcFile', => @updateCommand()
 
   destroy: ->
-    atom.config.unobserve 'linter-pylint.Executable'
-    atom.config.unobserve 'linter-pyling.rcFile'
+    atom.config.unobserve 'linter-pylint.executable'
+    atom.config.unobserve 'linter-pylint.rcFile'
 
   # Sets the command based on config options
   updateCommand: ->
-    cmdOptions = ["--msg-template='{line},{column},{category},{msg_id}:{msg}'"
-                  '--reports=n']
-    executable = atom.config.get 'linter-pylint.executable'
+    cmd = [atom.config.get 'linter-pylint.executable']
+    cmd.push "--msg-template='{line},{column},{category},{msg_id}:{msg}'"
+    cmd.push '--reports=n'
+
     rcFile = atom.config.get 'linter-pylint.rcFile'
-
     if rcFile
-      cmdOptions.push "--rcfile=#{rcFile}"
+      cmd.push "--rcfile=#{rcFile}"
 
-    if executable
-      cmd = ["#{executable}"].concat cmdOptions
-    else
-      cmd = ["pylint"].concat cmdOptions
+    console.log cmd
 
     @cmd = cmd
 
