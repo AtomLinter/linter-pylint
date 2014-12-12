@@ -39,8 +39,6 @@ class LinterPylint extends Linter
     if rcFile
       cmd.push "--rcfile=#{rcFile}"
 
-    console.log cmd
-
     @cmd = cmd
 
 
