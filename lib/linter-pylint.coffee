@@ -5,11 +5,7 @@ Linter = require "#{linterPath}/lib/linter"
 
 
 class LinterPylint extends Linter
-  @enabled = false # false until executable checked
   @syntax: 'source.python' # fits all *.py-files
-  cmd: ['pylint'
-        "--msg-template='{line},{column},{category},{msg_id}:{msg}'"
-        '--reports=n']
 
   linterName: 'pylint'
 
@@ -19,35 +15,31 @@ class LinterPylint extends Linter
   regexFlags: 'm'
 
   constructor: (@editor) ->
-    super @editor  # sets @cwd to the dirname of the current file
+    super @editor
+
+    # sets @cwd to the dirname of the current file
     # if we're in a project, use that path instead
     @cwd = atom.project.path ? @cwd
-    exec 'pylint --version', cwd: @cwd, @executionCheckHandler
-    log 'Linter-Pylint: initialization completed'
 
-  # Private: handles the initial 'version' call, extracts the version and
-  # enables the linter
-  executionCheckHandler: (error, stdout, stderr) =>
-    versionRegEx = /pylint(-script.py)? ([\d\.]+)\,/
-    if not versionRegEx.test(stdout)
-      result = if error? then '#' + error.code + ': ' else ''
-      result += 'stdout: ' + stdout if stdout.length > 0
-      result += 'stderr: ' + stderr if stderr.length > 0
-      console.error "Linter-Pylint: 'pylint' was not executable: " + result
-    else
-      log "Linter-Pylint: found pylint " + versionRegEx.exec(stdout).slice(-1)[0]
-      @enabled = true # everything is fine, the linter is ready to work
+    # Set to observe config options
+    atom.config.observe 'linter-pylint.executable', => @updateCommand()
+    atom.config.observe 'linter-pylint.rcFile', => @updateCommand()
 
-  lintFile: (filePath, callback) =>
-    if @enabled
-      # Only lint when pylint is present
-      super filePath, callback
-    else
-      # Otherwise it's important that we call @processMessage to avoid leaking
-      # the temporary file.
-      @processMessage "", callback
+  destroy: ->
+    atom.config.unobserve 'linter-pylint.executable'
+    atom.config.unobserve 'linter-pylint.rcFile'
 
-  formatMessage: (match) ->
-    "#{match.msg_id}: #{match.message}"
+  # Sets the command based on config options
+  updateCommand: ->
+    cmd = [atom.config.get 'linter-pylint.executable']
+    cmd.push "--msg-template='{line},{column},{category},{msg_id}:{msg}'"
+    cmd.push '--reports=n'
+
+    rcFile = atom.config.get 'linter-pylint.rcFile'
+    if rcFile
+      cmd.push "--rcfile=#{rcFile}"
+
+    @cmd = cmd
+
 
 module.exports = LinterPylint
