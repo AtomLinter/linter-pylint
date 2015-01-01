@@ -34,6 +34,7 @@ class LinterPylint extends Linter
     cmd = [atom.config.get 'linter-pylint.executable']
     cmd.push "--msg-template='{line},{column},{category},{msg_id}:{msg}'"
     cmd.push '--reports=n'
+    cmd.push '--output-format=text'
 
     rcFile = atom.config.get 'linter-pylint.rcFile'
     if rcFile
