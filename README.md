@@ -17,6 +17,9 @@ There are other linters available - take a look at the linters [mainpage](https:
 
 ## Changelog
 
+### 0.2.1
+ - Fix the ENOTDIR error if atom.project.path is a file instead of a directory
+
 ### 0.2.0
  - Settings to configure rcfile, executable name [#24](https://github.com/AtomLinter/linter-pylint/pull/24)
 
