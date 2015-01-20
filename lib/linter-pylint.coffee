@@ -1,3 +1,4 @@
+fs = require 'fs'
 {exec} = require 'child_process'
 linterPath = atom.packages.getLoadedPackage("linter").path
 Linter = require "#{linterPath}/lib/linter"
@@ -17,9 +18,11 @@ class LinterPylint extends Linter
   constructor: (@editor) ->
     super @editor
 
-    # sets @cwd to the dirname of the current file
-    # if we're in a project, use that path instead
-    @cwd = atom.project.path ? @cwd
+    stats = fs.statSync atom.project.path
+    if stats.isDirectory()
+      # sets @cwd to the dirname of the current file
+      # if we're in a project, use that path instead
+      @cwd = atom.project.path
 
     # Set to observe config options
     atom.config.observe 'linter-pylint.executable', => @updateCommand()
