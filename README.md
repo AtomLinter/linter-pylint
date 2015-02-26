@@ -17,6 +17,9 @@ There are other linters available - take a look at the linters [mainpage](https:
 
 ## Changelog
 
+### 0.2.1
+ - Use new API for project path
+
 ### 0.2.0
  - Settings to configure rcfile, executable name [#24](https://github.com/AtomLinter/linter-pylint/pull/24)
 
