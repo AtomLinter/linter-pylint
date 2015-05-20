@@ -24,12 +24,12 @@ class LinterPylint extends Linter
     @cwd = paths[0] || @cwd
 
     # Set to observe config options
-    atom.config.observe 'linter-pylint.executable', => @updateCommand()
-    atom.config.observe 'linter-pylint.rcFile', => @updateCommand()
+    @executableListener = atom.config.observe 'linter-pylint.executable', => @updateCommand()
+    @rcFileListener = atom.config.observe 'linter-pylint.rcFile', => @updateCommand()
 
   destroy: ->
-    atom.config.unobserve 'linter-pylint.executable'
-    atom.config.unobserve 'linter-pylint.rcFile'
+    @executableListener.dispose()
+    @rcFileListener.dispose()
 
   # Sets the command based on config options
   updateCommand: ->
