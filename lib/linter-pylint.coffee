@@ -26,6 +26,7 @@ class LinterPylint extends Linter
     @rcFileListener = atom.config.observe 'linter-pylint.rcFile', => @updateCommand()
 
   destroy: ->
+    super
     @executableListener.dispose()
     @rcFileListener.dispose()
 
