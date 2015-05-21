@@ -1,7 +1,6 @@
 {
   "name": "linter-pylint",
   "linter-package": true,
-  "activationCommands": [],
   "main": "./lib/init",
   "version": "0.2.1",
   "description": "Lint python on the fly, using pylint",
