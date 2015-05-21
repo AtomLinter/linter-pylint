@@ -1,8 +1,6 @@
 {exec} = require 'child_process'
 linterPath = atom.packages.getLoadedPackage("linter").path
 Linter = require "#{linterPath}/lib/linter"
-{log, warn} = require "#{linterPath}/lib/utils"
-
 
 class LinterPylint extends Linter
   @syntax: 'source.python' # fits all *.py-files
