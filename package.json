@@ -4,10 +4,37 @@
   "main": "./lib/init",
   "version": "0.2.2",
   "description": "Lint python on the fly, using pylint",
-  "repository": "https://github.com/AtomLinter/linter-pylint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AtomLinter/linter-pylint"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "readme": "# linter-pylint\n\nThis package will lint your opened Python-files in Atom, using [pylint](http://www.pylint.org/).\n\n## Installation\n\n* Install [pylint](http://www.pylint.org/#install).\n* `$ apm install linter` (if you don't have [AtomLinter/Linter](https://github.com/AtomLinter/Linter) installed).\n* `$ apm install linter-pylint`\n\n## Configuration\n* **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2 and 3 or if you are using a virtualenv\n* **RC File** Path to a custom pylintrc\n\n## Other available linters\nThere are other linters available - take a look at the linters [mainpage](https://github.com/AtomLinter/Linter).\n\n## Changelog\n\n### 0.2.1\n - Use new API for project path\n\n### 0.2.0\n - Settings to configure rcfile, executable name [#24](https://github.com/AtomLinter/linter-pylint/pull/24)\n\n### 0.1.5\n - Fix lint message display on Windows [#15](https://github.com/AtomLinter/linter-pylint/issues/15)\n - Fix temporary file leak when pylint isn't present\n\n### 0.1.3\n - Display pylint message ids\n - Fix debug mode [#9](https://github.com/AtomLinter/linter-pylint/issues/9)\n - Use project directory as cwd (works better with Atom projects)\n\n### 0.1.2\n - fix 'has no method getCmd' bug [#4](https://github.com/AtomLinter/linter-pylint/issues/4)\n\n### 0.1.0\n\n - Implemented first version of 'linter-pylint'\n - Added support for Errors and Warnings, \"Refactor\", \"Convention and \"Fatal\"-messages are ignored due to missing display-capabilities.\n\n## Donation\n[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/AtomLinter/linter-pylint/issues"
+  },
+  "homepage": "https://github.com/AtomLinter/linter-pylint",
+  "_id": "linter-pylint@0.2.2",
+  "_shasum": "e4c56069e204e8c9d1e97c0cb148031617e90c68",
+  "_resolved": "file:../d-115426-62428-1nidvg3/package.tgz",
+  "_from": "../d-115426-62428-1nidvg3/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/init.coffee",
+        "lib/linter-pylint.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }
