@@ -34,8 +34,11 @@ class LinterPylint extends Linter
 
   # Sets the command based on config options
   updateCommand: ->
+    format = atom.config.get 'linter-pylint.messageFormat'
+    for pattern, value of {'%m': 'msg', '%i': 'msg_id', '%s': 'symbol'}
+        format = format.replace(new RegExp(pattern, 'g'), "{#{value}}")
     cmd = [atom.config.get 'linter-pylint.executable']
-    cmd.push "--msg-template='{line},{column},{category},{msg_id}:{msg}'"
+    cmd.push "--msg-template='{line},{column},{category},{msg_id}:#{format}'"
     cmd.push '--reports=n'
     cmd.push '--output-format=text'
 
