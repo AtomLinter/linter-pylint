@@ -11,6 +11,8 @@ This package will lint your opened Python-files in Atom, using [pylint](http://w
 ## Configuration
 * **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2 and 3 or if you are using a virtualenv
 * **RC File** Path to a custom pylintrc
+* **Message Format** The format of the linter messages. It may include `%s`
+and `%i` for the Pylint human-readable and numeric message IDs.
 
 ## Other available linters
 There are other linters available - take a look at the linters [mainpage](https://github.com/AtomLinter/Linter).

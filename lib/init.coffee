@@ -10,7 +10,7 @@ module.exports =
         type: 'string'
         default: '%m'
         description:
-            'Format for PyLint messages, where %m is message, %i is the
+            'Format for Pylint messages, where %m is message, %i is the
             numeric mesasge ID (e.g. W0613) and %s is the human-readable
             message ID (e.g. unused-argument).'
 
