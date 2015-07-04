@@ -6,6 +6,13 @@ module.exports =
     rcFile:
       type: 'string'
       default: ''
+    messageFormat:
+        type: 'string'
+        default: '%m'
+        description:
+            'Format for PyLint messages, where %m is message, %i is the
+            numeric mesasge ID (e.g. W0613) and %s is the human-readable
+            message ID (e.g. unused-argument).'
 
   activate: ->
     console.log 'Linter-Pylint: package loaded,

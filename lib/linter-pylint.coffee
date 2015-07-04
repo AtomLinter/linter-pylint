@@ -24,11 +24,13 @@ class LinterPylint extends Linter
     # Set to observe config options
     @executableListener = atom.config.observe 'linter-pylint.executable', => @updateCommand()
     @rcFileListener = atom.config.observe 'linter-pylint.rcFile', => @updateCommand()
+    @messageFormatListener = atom.config.observe 'linter-pylint.messageFormat', => @updateCommand()
 
   destroy: ->
     super
     @executableListener.dispose()
     @rcFileListener.dispose()
+    @messageFormat.dispose()
 
   # Sets the command based on config options
   updateCommand: ->
