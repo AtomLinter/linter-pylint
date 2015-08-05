@@ -8,7 +8,7 @@ class LinterPylint extends Linter
   linterName: 'pylint'
 
   regex: '^(?<line>\\d+),(?<col>\\d+),\
-          ((?<error>error)|(?<warning>warning)),\
+          ((?<error>fatal|error)|(?<warning>warning|convention|refactor)),\
           (?<msg_id>\\w\\d+):(?<message>.*)$'
   regexFlags: 'm'
 
