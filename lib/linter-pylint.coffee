@@ -33,7 +33,21 @@ class LinterPylint extends Linter
   # Sets the command based on config options
   updateCommand: ->
     cmd = [atom.config.get 'linter-pylint.executable']
-    cmd.push "--msg-template='{line},{column},{category},{msg_id}:{msg}'"
+
+    showCodes = atom.config.get 'linter-pylint.showCodes'
+    showReadableCodes = atom.config.get 'linter-pylint.showReadableCodes'
+
+    msgCodes = ""
+    if showCodes or showReadableCodes
+      msgCodes = '('
+      if showCodes
+        msgCodes += '{msg_id}'
+        if showReadableCodes
+          msgCodes += ';'
+      if showReadableCodes
+        msgCodes += '{symbol}'
+      msgCodes += ') '
+    cmd.push "--msg-template='{line},{column},{category},{msg_id}:" + msgCodes + "{msg}'"
     cmd.push '--reports=n'
     cmd.push '--output-format=text'
 
