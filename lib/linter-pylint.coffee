@@ -24,16 +24,21 @@ class LinterPylint extends Linter
     # Set to observe config options
     @executableListener = atom.config.observe 'linter-pylint.executable', => @updateCommand()
     @rcFileListener = atom.config.observe 'linter-pylint.rcFile', => @updateCommand()
+    @messageFormatListener = atom.config.observe 'linter-pylint.messageFormat', => @updateCommand()
 
   destroy: ->
     super
     @executableListener.dispose()
     @rcFileListener.dispose()
+    @messageFormat.dispose()
 
   # Sets the command based on config options
   updateCommand: ->
+    format = atom.config.get 'linter-pylint.messageFormat'
+    for pattern, value of {'%m': 'msg', '%i': 'msg_id', '%s': 'symbol'}
+        format = format.replace(new RegExp(pattern, 'g'), "{#{value}}")
     cmd = [atom.config.get 'linter-pylint.executable']
-    cmd.push "--msg-template='{line},{column},{category},{msg_id}:{msg}'"
+    cmd.push "--msg-template='{line},{column},{category},{msg_id}:#{format}'"
     cmd.push '--reports=n'
     cmd.push '--output-format=text'
 
