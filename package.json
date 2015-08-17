@@ -1,13 +1,23 @@
 {
   "name": "linter-pylint",
   "linter-package": true,
-  "main": "./lib/init",
+  "main": "./lib/main",
   "version": "0.2.2",
   "description": "Lint python on the fly, using pylint",
   "repository": "https://github.com/AtomLinter/linter-pylint",
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=1"
   },
-  "dependencies": {}
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
+  },
+  "dependencies": {
+    "atom-linter": "^3.2.0",
+    "lodash": "^3.10.1"
+  }
 }
