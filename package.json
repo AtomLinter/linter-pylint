@@ -2,7 +2,7 @@
   "name": "linter-pylint",
   "linter-package": true,
   "main": "./lib/main",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "Lint python on the fly, using pylint",
   "repository": "https://github.com/AtomLinter/linter-pylint",
   "license": "MIT",
