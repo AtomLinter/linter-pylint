@@ -10,9 +10,9 @@ This package will lint your opened Python-files in Atom, using [pylint](http://w
 
 ## Configuration
 * **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2 and 3 or if you are using a virtualenv
-* **RC File** Path to a custom pylintrc
-* **Message Format** The format of the linter messages. It may include `%s`
-and `%i` for the Pylint human-readable and numeric message IDs.
+* **Message Format** Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).
+* **Python Path** Paths to be added to the `PYTHONPATH` environment variable.  Use `%p` for the current project directory (no trailing /). E.g., `%p/vendor`
+* **Rc File** Path to a custom pylintrc
 
 ## Other available linters
 There are other linters available - take a look at the linters [mainpage](https://github.com/AtomLinter/Linter).
