@@ -5,7 +5,6 @@ This package will lint your opened Python-files in Atom, using [pylint](http://w
 ## Installation
 
 * Install [pylint](http://www.pylint.org/#install).
-* `$ apm install linter` (if you don't have [AtomLinter/Linter](https://github.com/AtomLinter/Linter) installed).
 * `$ apm install linter-pylint`
 
 ## Configuration
@@ -18,6 +17,9 @@ This package will lint your opened Python-files in Atom, using [pylint](http://w
 There are other linters available - take a look at the linters [mainpage](https://github.com/AtomLinter/Linter).
 
 ## Changelog
+
+### 1.0.0
+- Use latest linter API
 
 ### 0.2.1
  - Use new API for project path
