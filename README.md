@@ -43,6 +43,3 @@ There are other linters available - take a look at the linters [mainpage](https:
 
  - Implemented first version of 'linter-pylint'
  - Added support for Errors and Warnings, "Refactor", "Convention and "Fatal"-messages are ignored due to missing display-capabilities.
-
-## Donation
-[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)
