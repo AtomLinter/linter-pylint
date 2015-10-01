@@ -19,12 +19,12 @@ module.exports =
       default: ''
       description: 'Path to .pylintrc file.'
     messageFormat:
-        type: 'string'
-        default: '%i %m'
-        description:
-            'Format for Pylint messages where %m is the message, %i is the
-            numeric mesasge ID (e.g. W0613) and %s is the human-readable
-            message ID (e.g. unused-argument).'
+      type: 'string'
+      default: '%i %m'
+      description:
+        'Format for Pylint messages where %m is the message, %i is the
+        numeric mesasge ID (e.g. W0613) and %s is the human-readable
+        message ID (e.g. unused-argument).'
 
   activate: ->
     require('atom-package-deps').install(require('../package.json').name)
@@ -82,17 +82,17 @@ module.exports =
             filteredErrors = @filterWhitelistedErrors(data.stderr)
             throw new Error(filteredErrors) if filteredErrors
             helpers.parse(data.stdout, @regex, {filePath: file})
-              .filter((lintIssue) ->lintIssue.type isnt 'info')
+              .filter((lintIssue) -> lintIssue.type isnt 'info')
               .map (lintIssue) ->
                 [[lineStart, colStart], [lineEnd, colEnd]] = lintIssue.range
-                if lineStart == lineEnd and colStart <= colEnd <= 0
+                if lineStart is lineEnd and colStart <= colEnd <= 0
                   return _.merge {}, lintIssue,
                     range: helpers.rangeFromLineNumber activeEditor, lineStart, colStart
                 lintIssue
 
   getProjDir: (filePath) ->
     _.find atom.project.getPaths(), (projPath) ->
-      filePath.indexOf(projPath) == 0
+      filePath.indexOf(projPath) is 0
 
   filterWhitelistedErrors: (output) ->
     outputLines = _.compact output.split(os.EOL)
