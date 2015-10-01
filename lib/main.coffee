@@ -55,6 +55,7 @@ module.exports =
 
   provideLinter: ->
     provider =
+      name: 'Pylint'
       grammarScopes: ['source.python']
       scope: 'file'
       lintOnFly: true
