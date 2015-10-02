@@ -6,6 +6,9 @@
   "description": "Lint python on the fly, using pylint",
   "repository": "https://github.com/AtomLinter/linter-pylint",
   "license": "MIT",
+  "scripts": {
+    "lint": "./node_modules/.bin/coffeelint lib"
+  },
   "engines": {
     "atom": ">=1"
   },
@@ -23,5 +26,8 @@
   },
   "package-deps": [
     "linter"
-  ]
+  ],
+  "devDependencies": {
+    "coffeelint": "^1.12.1"
+  }
 }

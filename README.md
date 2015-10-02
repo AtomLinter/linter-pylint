@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AtomLinter/linter-pylint.svg)](https://travis-ci.org/AtomLinter/linter-pylint)
+
 # linter-pylint
 
 This package will lint your opened Python-files in Atom, using [pylint](http://www.pylint.org/).
