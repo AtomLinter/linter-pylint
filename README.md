@@ -1,4 +1,8 @@
-# linter-pylint [![Build Status](https://travis-ci.org/AtomLinter/linter-pylint.svg?branch=master)](https://travis-ci.org/AtomLinter/linter-pylint)
+# linter-pylint 
+[![Build Status](https://travis-ci.org/AtomLinter/linter-pylint.svg?branch=master)](https://travis-ci.org/AtomLinter/linter-pylint)
+[![Dependency Status](https://david-dm.org/AtomLinter/linter-pylint.svg)](https://david-dm.org/AtomLinter/linter-pylint)
+[![Plugin installs!](https://img.shields.io/apm/dm/linter-pylint.svg)](https://atom.io/packages/linter-pylint)
+[![Package version!](https://img.shields.io/apm/v/linter-pylint.svg?style=flat)](https://atom.io/packages/linter-pylint)
 
 This package will lint your opened Python-files in Atom, using [pylint](http://www.pylint.org/).
 
