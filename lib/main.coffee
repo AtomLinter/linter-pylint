@@ -92,8 +92,7 @@ module.exports =
                 lintIssue
 
   getProjDir: (filePath) ->
-    _.find atom.project.getPaths(), (projPath) ->
-      filePath.indexOf(projPath) is 0
+    atom.project.relativizePath(filePath)[0]
 
   filterWhitelistedErrors: (output) ->
     outputLines = _.compact output.split(os.EOL)
