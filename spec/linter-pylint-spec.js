@@ -1,7 +1,7 @@
 'use babel';
 
 describe('The pylint provider for Linter', () => {
-  // const lint = require('../lib/main').provideLinter().lint;
+  const lint = require('../lib/main').provideLinter().lint;
 
   beforeEach(() => {
     waitsForPromise(() => {
@@ -21,7 +21,7 @@ describe('The pylint provider for Linter', () => {
   it('should be an active package', () => {
     return expect(atom.packages.isPackageActive('linter-pylint')).toBe(true);
   });
-/*
+
   describe('checks bad.py and', () => {
     let editor = null;
     beforeEach(() => {
@@ -55,19 +55,22 @@ describe('The pylint provider for Linter', () => {
   });
 
   it('finds nothing wrong with an empty file', () => {
-    return atom.workspace.open(__dirname + '/files/empty.py').then(editor => {
-      return lint(editor).then(messages => {
-        expect(messages.length).toEqual(0);
+    waitsForPromise(() => {
+      return atom.workspace.open(__dirname + '/files/empty.py').then(editor => {
+        return lint(editor).then(messages => {
+          expect(messages.length).toEqual(0);
+        });
       });
     });
   });
 
   it('finds nothing wrong with a valid file', () => {
-    return atom.workspace.open(__dirname + '/files/good.py').then(editor => {
-      return lint(editor).then(messages => {
-        expect(messages.length).toEqual(0);
+    waitsForPromise(() => {
+      return atom.workspace.open(__dirname + '/files/good.py').then(editor => {
+        return lint(editor).then(messages => {
+          expect(messages.length).toEqual(0);
+        });
       });
     });
   });
-*/
 });
