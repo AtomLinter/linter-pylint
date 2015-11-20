@@ -42,6 +42,9 @@
     "env": {
       "es6": true,
       "node": true
+    },
+    "rules": {
+      "comma-dangle": 0
     }
   }
 }

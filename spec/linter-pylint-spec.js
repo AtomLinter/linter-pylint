@@ -5,10 +5,12 @@ describe('The pylint provider for Linter', () => {
 
   beforeEach(() => {
     waitsForPromise(() => {
-      atom.packages.activatePackage('linter-pylint');
-      return atom.packages.activatePackage('language-python').then(() =>
-        atom.workspace.open(__dirname + '/files/good.py')
-      );
+      return Promise.all([
+        atom.packages.activatePackage('linter-pylint'),
+        atom.packages.activatePackage('language-python').then(() =>
+          atom.workspace.open(__dirname + '/files/good.py')
+        )
+      ]);
     });
   });
 
