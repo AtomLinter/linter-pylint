@@ -24,10 +24,27 @@
     "atom-package-deps": "^2.0.2",
     "lodash": "^3.10.1"
   },
+  "devDependencies": {
+    "coffeelint": "^1.12.1",
+    "eslint": "^1.9.0",
+    "babel-eslint": "^4.1.5",
+    "eslint-config-airbnb": "latest"
+  },
   "package-deps": [
     "linter"
   ],
-  "devDependencies": {
-    "coffeelint": "^1.12.1"
+  "eslintConfig": {
+    "extends": "airbnb/base",
+    "parser": "babel-eslint",
+    "globals": {
+      "atom": true
+    },
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "rules": {
+      "comma-dangle": 0
+    }
   }
 }
