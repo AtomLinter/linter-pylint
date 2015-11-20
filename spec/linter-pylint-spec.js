@@ -1,6 +1,4 @@
 'use babel';
-/* eslint-env jasmine */
-/* global waitsForPromise */
 
 describe('The pylint provider for Linter', () => {
   // const lint = require('../lib/main').provideLinter().lint;
