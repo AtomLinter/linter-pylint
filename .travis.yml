@@ -5,9 +5,9 @@ notifications:
     on_success: never
     on_failure: change
 
-addons:
-  apt:
-    packages:
-      - pylint
+before_install:
+  - brew update
+  - brew outdated python || brew upgrade python
+  - pip install pylint
 
 script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
