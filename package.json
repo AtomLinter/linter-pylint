@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "atom-linter": "^3.3.7",
-    "atom-package-deps": "^3.0.2",
+    "atom-package-deps": "^3.0.5",
     "lodash": "^3.10.1"
   },
   "devDependencies": {
