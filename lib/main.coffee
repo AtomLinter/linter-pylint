@@ -64,7 +64,7 @@ module.exports =
         return helpers.tempFile path.basename(file), activeEditor.getText(), (tmpFilename) =>
           projDir = @getProjDir(file)
           cwd = projDir
-          pythonPath = @pythonPath.replace(/%p/g, projDir)
+          pythonPath = @getPyPathWithRelImportDirs @pythonPath.replace(/%p/g, projDir), projDir, file
           env = Object.create process.env,
             PYTHONPATH:
               value: _.compact([process.env.PYTHONPATH, projDir, pythonPath]).join path.delimiter
@@ -93,6 +93,17 @@ module.exports =
 
   getProjDir: (filePath) ->
     atom.project.relativizePath(filePath)[0]
+
+  # Add all directories in hierarchy between project dir and file dir to PYTHONPATH
+  # Required to support relative imports
+  getPyPathWithRelImportDirs: (_pythonPath, projDir, filePath) ->
+    pythonPath = _pythonPath
+    currentPath = path.dirname filePath
+    until currentPath is projDir or currentPath.length < projDir.length
+      pythonPath += ":#{currentPath}"
+      currentPath = path.dirname currentPath
+    return pythonPath
+
 
   filterWhitelistedErrors: (output) ->
     outputLines = _.compact output.split(os.EOL)
