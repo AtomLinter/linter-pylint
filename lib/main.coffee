@@ -71,13 +71,11 @@ module.exports =
       lint: (activeEditor) =>
         file = activeEditor.getPath()
         return helpers.tempFile path.basename(file), activeEditor.getText(), (tmpFilename) =>
-          projDir = @getProjDir(file)
-          if @cwd.indexOf('%p') > -1 and not projDir
-            cwd = null
-          else
-            cwd = @cwd.replace('%f', path.dirname(file)).replace('%p', projDir)
-          executable = @executable.replace(/%p/g, projDir)
-          pythonPath = @pythonPath.replace(/%p/g, projDir)
+          # default project dir to file directory if path cannot be determined
+          projDir = @getProjDir(file) or path.dirname(file)
+          cwd = @cwd.replace('%f', path.dirname(file)).replace('%p', projDir)
+          executable = @executable.replace('%p', projDir)
+          pythonPath = @pythonPath.replace('%p', projDir)
           env = Object.create process.env,
             PYTHONPATH:
               value: _.compact([process.env.PYTHONPATH, projDir, pythonPath]).join path.delimiter
