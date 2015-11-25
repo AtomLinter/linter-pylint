@@ -9,15 +9,21 @@ module.exports =
     executable:
       type: 'string'
       default: 'pylint'
-      description: 'Command or path to executable.'
+      description: 'Command or path to executable. Use %p for current project directory (no trailing /).'
     pythonPath:
       type: 'string'
       default: ''
-      description: 'Paths to be added to $PYTHONPATH.  Use %p for current project directory (no trailing /).'
+      description: 'Paths to be added to $PYTHONPATH. Use %p for current project directory.'
     rcFile:
       type: 'string'
       default: ''
-      description: 'Path to .pylintrc file.'
+      description: 'Path to .pylintrc file. Use %p for the current project directory or %f for the directory of the ' +
+                   'current file.'
+    workingDirectory:
+      type: 'string'
+      default: '%p'
+      description: 'Directory pylint is run from. Use %p for the current project directory or %f for the directory' +
+                   'of the current file.'
     messageFormat:
       type: 'string'
       default: '%i %m'
@@ -41,6 +47,9 @@ module.exports =
     @subscriptions.add atom.config.observe 'linter-pylint.pythonPath',
       (newPythonPathValue) =>
         @pythonPath = _.trim newPythonPathValue, path.delimiter
+    @subscriptions.add atom.config.observe 'linter-pylint.workingDirectory',
+      (newCwd) =>
+        @cwd = _.trim newCwd, path.delimiter
 
     @regex = '^(?<line>\\d+),(?<col>\\d+),\
                (?<type>\\w+),\
@@ -63,7 +72,11 @@ module.exports =
         file = activeEditor.getPath()
         return helpers.tempFile path.basename(file), activeEditor.getText(), (tmpFilename) =>
           projDir = @getProjDir(file)
-          cwd = projDir
+          if @cwd.indexOf('%p') > -1 and not projDir
+            cwd = null
+          else
+            cwd = @cwd.replace('%f', path.dirname(file)).replace('%p', projDir)
+          executable = @executable.replace(/%p/g, projDir)
           pythonPath = @pythonPath.replace(/%p/g, projDir)
           env = Object.create process.env,
             PYTHONPATH:
@@ -77,9 +90,10 @@ module.exports =
             '--output-format=text'
           ]
           if @rcFile
-            args.push "--rcfile=#{@rcFile}"
+            rcFile = @rcFile.replace(/%p/g, projDir).replace(/%f/g, path.dirname(file))
+            args.push "--rcfile=#{rcFile}"
           args.push tmpFilename
-          return helpers.exec(@executable, args, {env: env, cwd: cwd, stream: 'both'}).then (data) =>
+          return helpers.exec(executable, args, {env: env, cwd: cwd, stream: 'both'}).then (data) =>
             filteredErrors = @filterWhitelistedErrors(data.stderr)
             throw new Error(filteredErrors) if filteredErrors
             helpers.parse(data.stdout, @regex, {filePath: file})
