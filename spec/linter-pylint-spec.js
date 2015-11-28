@@ -49,7 +49,7 @@ describe('The pylint provider for Linter', () => {
         expect(messages[0].filePath).toMatch(/.+spec[\\\/]files[\\\/]bad\.py$/);
         expect(messages[0].range).toBeDefined();
         expect(messages[0].range.length).toEqual(2);
-        expect(messages[0].range).toEqual([[0, 0], [0, 3]]);
+        expect(messages[0].range).toEqual([[0, 0], [0, 4]]);
       });
     });
   });
