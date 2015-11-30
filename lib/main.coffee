@@ -17,12 +17,12 @@ module.exports =
     rcFile:
       type: 'string'
       default: ''
-      description: 'Path to .pylintrc file. Use %p for the current project directory or %f for the directory of the ' +
+      description: 'Path to pylintrc file. Use %p for the current project directory or %f for the directory of the ' +
                    'current file.'
     workingDirectory:
       type: 'string'
       default: '%p'
-      description: 'Directory pylint is run from. Use %p for the current project directory or %f for the directory' +
+      description: 'Directory pylint is run from. Use %p for the current project directory or %f for the directory ' +
                    'of the current file.'
     messageFormat:
       type: 'string'

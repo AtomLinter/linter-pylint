@@ -1,4 +1,4 @@
-# linter-pylint 
+# linter-pylint
 [![Build Status](https://travis-ci.org/AtomLinter/linter-pylint.svg?branch=master)](https://travis-ci.org/AtomLinter/linter-pylint)
 [![Dependency Status](https://david-dm.org/AtomLinter/linter-pylint.svg)](https://david-dm.org/AtomLinter/linter-pylint)
 [![Plugin installs!](https://img.shields.io/apm/dm/linter-pylint.svg)](https://atom.io/packages/linter-pylint)
@@ -12,10 +12,17 @@ This package will lint your opened Python-files in Atom, using [pylint](http://w
 * `$ apm install linter-pylint`
 
 ## Configuration
-* **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2 and 3 or if you are using a virtualenv
-* **Message Format** Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).
-* **Python Path** Paths to be added to the `PYTHONPATH` environment variable.  Use `%p` for the current project directory (no trailing /). E.g., `%p/vendor`
-* **Rc File** Path to a custom pylintrc
+* **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2
+  and 3 or if you are using a virtualenv. Use `%p` for the current project (no trailing /).
+* **Message Format** Format for Pylint messages where `%m` is the message, `%i` is the numeric message ID (e.g. W0613)
+  and `%s` is the human-readable message ID (e.g. unused-argument).
+* **Python Path** Paths to be added to the `PYTHONPATH` environment variable. Use `%p` for the current project
+  directory (e.g. `%p/vendor`).
+* **Rc File** Path to pylintrc file. Use `%p` for the current project directory or `%f` for the directory of the current
+  file location.
+* **Working Directory** Directory pylint is run from. Use `%p` for the current project directory or `%f` for the
+  directory of the current file.
+* `%p` will fallback to the current file's directory (equivilent to `%f`) if no project directory can be determined.
 
 ## Other available linters
 There are other linters available - take a look at the linters [mainpage](https://github.com/AtomLinter/Linter).
