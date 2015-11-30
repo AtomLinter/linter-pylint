@@ -79,6 +79,7 @@ module.exports =
           env = Object.create process.env,
             PYTHONPATH:
               value: _.compact([process.env.PYTHONPATH, projDir, pythonPath]).join path.delimiter
+              enumerable: true
           format = @messageFormat
           for pattern, value of {'%m': 'msg', '%i': 'msg_id', '%s': 'symbol'}
             format = format.replace(new RegExp(pattern, 'g'), "{#{value}}")
