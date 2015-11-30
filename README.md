@@ -22,6 +22,10 @@ There are other linters available - take a look at the linters [mainpage](https:
 
 ## Changelog
 
+### 1.1.0
+- Allow use of project and file directories in rcfile, cwd, and PYTHONPATH (d82116d)
+- Fix use of PYTHONPATH (7fb325)
+
 ### 1.0.0
 - Use latest linter API
 
