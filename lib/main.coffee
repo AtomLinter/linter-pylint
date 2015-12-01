@@ -53,7 +53,7 @@ module.exports =
 
     @regex = '^(?<line>\\d+),(?<col>\\d+),\
                (?<type>\\w+),\
-               (\\w\\d+):(?<message>.*)$'
+               (\\w\\d+):(?<message>.*)\\r?$'
 
     @errorWhitelist = [
       /^No config file found, using default configuration$/
