@@ -52,9 +52,7 @@ module.exports =
       (newCwd) =>
         @cwd = _.trim newCwd, path.delimiter
 
-    @regex = '^(?<line>\\d+),(?<col>\\d+),\
-               (?<type>\\w+),\
-               (\\w\\d+):(?<message>.*)\\r?$'
+    @regex = '(?<line>\\d+),(?<col>\\d+),(?<type>\\w+),(\\w\\d+):(?<message>.*)\\r?(\\n|$)'
 
     @errorWhitelist = [
       /^No config file found, using default configuration$/
