@@ -9,5 +9,6 @@ before_install:
   - brew update
   - brew install python
   - pip install pylint
+  - pylint --version
 
 script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
