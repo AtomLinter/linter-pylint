@@ -27,10 +27,10 @@ module.exports =
         of the current file.'
     messageFormat:
       type: 'string'
-      default: '%i %m'
+      default: '%m (%s)'
       description:
         'Format for Pylint messages where %m is the message, %i is the
-        numeric mesasge ID (e.g. W0613) and %s is the human-readable
+        numeric message ID (e.g. W0613) and %s is the human-readable
         message ID (e.g. unused-argument).'
 
   activate: ->
