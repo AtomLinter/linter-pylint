@@ -83,7 +83,7 @@ module.exports =
           cwd = @replaceVars(@cwd, replaceFlags, process.env)
           executable = @replaceVars(@executable, replaceFlags, process.env)
           format = @replaceVars(@messageFormat, @messageFormatFlags, {})
-          pythonFlags = _.compact(@replaceVars(@pythonPath, replaceFlags, process.env).split(/\s*,\s*/g)).join(path.delimiter)
+          pythonFlags = @replaceVars(@pythonPath, replaceFlags, process.env)
 
           # Construct arguments for pylint
           args = [
@@ -102,7 +102,7 @@ module.exports =
           # shadows standard library imports pylint and its dependencies use such as keyword.py
           env = Object.create process.env,
             PYTHONPATH:
-              value: pythonFlags
+              value: _.compact(_.trim(pythonFlags).split(/\s*,\s*/g)).join(path.delimiter)
               enumerable: true
 
           return helpers.exec(executable, args, {env: env, cwd: cwd, stream: 'both'}).then (data) =>
