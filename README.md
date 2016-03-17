@@ -13,17 +13,19 @@ This package will lint your opened Python-files in Atom, using [pylint](http://w
 
 ## Configuration
 * **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2
-  and 3 or if you are using a virtualenv. Use `%p` for the current project (no trailing /).
+  and 3 or if you are using a virtualenv. Use `%p` for the current project (no trailing /) or `%(VAR_NAME)` for the
+  `VAR_NAME` environment variable that Atom started with (e.g. `%(HOME)`).
 * **Message Format** Format for Pylint messages where `%m` is the message, `%i` is the numeric message ID (e.g. W0613)
   and `%s` is the human-readable message ID (e.g. unused-argument).
-* **Python Path** Paths to be added to the `PYTHONPATH` environment variable. Use `%p` for the current project
-  directory (e.g. `%p/vendor`) or `%f` for the directory of the current
-  file location.
-* **Rc File** Path to pylintrc file. Use `%p` for the current project directory or `%f` for the directory of the current
-  file location.
-* **Working Directory** Directory pylint is run from. Use `%p` for the current project directory or `%f` for the
-  directory of the current file.
-* `%p` will fallback to the current file's directory (equivilent to `%f`) if no project directory can be determined.
+* **Python Path** Comma delimited list of paths to set the `PYTHONPATH` environment variable. Use `%p` for the current
+  project directory (e.g. `%p/vendor`), `%f` for the directory of the current file location, or `%(VAR_NAME)` for the
+  `VAR_NAME` environment variable that Atom started with (e.g. `%(PYTHONPATH)`).
+* **Rc File** Path to pylintrc file. Use `%p` for the current project directory, `%f` for the directory of the current
+  file location, or `%(VAR_NAME)` for the `VAR_NAME` environment variable that Atom started with.
+* **Working Directory** Directory pylint is run from. Use `%p` for the current project directory, `%f` for the
+  directory of the current file, or `%(VAR_NAME)` for the `VAR_NAME` environment variable that Atom started with
+  (e.g. `%(HOME)`).
+* `%p` will fallback to the current file's directory (equivalent to `%f`) if no project directory can be determined.
 
 ## Other available linters
 There are other linters available - take a look at the linters [mainpage](https://github.com/AtomLinter/Linter).
