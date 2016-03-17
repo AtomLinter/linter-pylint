@@ -83,7 +83,7 @@ module.exports =
           cwd = @replaceVars(@cwd, replaceFlags, process.env)
           executable = @replaceVars(@executable, replaceFlags, process.env)
           format = @replaceVars(@messageFormat, @messageFormatFlags, {})
-          pythonFlags = @replaceVars(@pythonPath, replaceFlags, process.env).replace(/\s*,\s*/g, path.delimiter)
+          pythonFlags = _.compact(@replaceVars(@pythonPath, replaceFlags, process.env).split(/\s*,\s*/g)).join(path.delimiter)
 
           # Construct arguments for pylint
           args = [
@@ -124,7 +124,7 @@ module.exports =
     # Escapes required for terrible env names like PROGRAMFILES(X86): %(PROGRAMFILES\\(X86\\))
     string.replace /%(\w|\((([^()\\]|(\\(\\{2})*([()\\])))+)\))/g, (str, key, longKey) ->
       ret = if longKey then longKeyData[longKey.replace(/\\([\\()])/g, '$1')] else data[key]
-      ret ? str
+      ret ? ''
 
   getProjDir: (filePath) ->
     atom.project.relativizePath(filePath)[0]
