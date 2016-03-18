@@ -34,7 +34,7 @@ module.exports =
         message ID (e.g. unused-argument).'
 
   activate: ->
-    require('atom-package-deps').install()
+    require('atom-package-deps').install('linter-pylint')
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.config.observe 'linter-pylint.executable',
       (newExecutableValue) =>
