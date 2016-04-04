@@ -105,7 +105,8 @@ module.exports =
                 lintIssue
 
   getProjDir: (filePath) ->
-    atom.project.relativizePath(filePath)[0]
+    projDir = atom.project.relativizePath(filePath)[0]
+    if projDir is filePath then path.parse(filePath).dir else projDir
 
   filterWhitelistedErrors: (output) ->
     outputLines = _.compact output.split(os.EOL)
