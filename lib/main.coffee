@@ -106,7 +106,7 @@ module.exports =
 
   getProjDir: (filePath) ->
     projDir = atom.project.relativizePath(filePath)[0]
-    if projDir is filePath then path.parse(filePath).dir else projDir
+    if projDir is filePath then path.dirname(filePath) else projDir
 
   filterWhitelistedErrors: (output) ->
     outputLines = _.compact output.split(os.EOL)
