@@ -78,22 +78,20 @@ module.exports =
         projDir = @getProjDir(file) or path.dirname(file)
         fileDir = path.dirname(file)
         base_folder = tmp.dirSync {'unsafeCleanup': true}
-        recursive projDir, (err, files) =>
-            if err
-                throw err
-            for f in files
-                if /\.git/.test f
-                    continue
-                if file == f
-                    continue
-                folder = path.dirname f
-                nodefs.mkdirSync path.join(base_folder.name, folder), 0o777, true
-                fs.linkSync f, path.join(base_folder.name, f)
+        recursive projDir, (err, files) ->
+          if err
+            throw err
+          for f in files
+            if /\.git/.test f or file is f
+              continue
+            folder = path.dirname f
+            nodefs.mkdirSync path.join(base_folder.name, folder), 0o777, true
+            fs.linkSync f, path.join(base_folder.name, f)
         tmpFilename = path.join(base_folder.name, file)
         nodefs.mkdirSync path.join(base_folder.name, path.dirname file), 0o777, true
-        fs.writeFileSync tmpFilename, data, {}, (err) =>
-            if err
-                throw err
+        fs.writeFileSync tmpFilename, data, {}, (err) ->
+          if err
+            throw err
         cwd = @cwd.replace(/%f/g, fileDir).replace(/%p/g, projDir)
         executable = @executable.replace(/%p/g, projDir)
         pythonPath = @pythonPath.replace(/%f/g, fileDir).replace(/%p/g, projDir)
