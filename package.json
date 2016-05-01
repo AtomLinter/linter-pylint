@@ -1,7 +1,7 @@
 {
   "name": "linter-pylint",
   "main": "./lib/main",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "Lint python on the fly, using pylint",
   "repository": "https://github.com/AtomLinter/linter-pylint",
@@ -20,17 +20,15 @@
     }
   },
   "dependencies": {
-    "atom-linter": "^4.6.1",
+    "atom-linter": "^4.7.0",
     "atom-package-deps": "^4.0.1",
-    "lodash": "^4.6.1",
-    "recursive-readdir": ">=2.0.0",
-    "node-fs": ">=0.1.7",
-    "tmp": ">=0.0.28"
+    "lodash": "^4.11.1",
+    "tmp": "^0.0.28"
   },
   "devDependencies": {
-    "coffeelint": "^1.15.0",
-    "eslint": "^2.4.0",
-    "eslint-config-airbnb": "^7.0.0"
+    "coffeelint": "^1.15.7",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^8.0.0"
   },
   "package-deps": [
     "linter"
