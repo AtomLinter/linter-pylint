@@ -1,12 +1,13 @@
 {
   "name": "linter-pylint",
-  "main": "./lib/main",
+  "main": "./lib/main.coffee",
   "version": "1.2.0",
   "private": true,
   "description": "Lint python on the fly, using pylint",
   "repository": "https://github.com/AtomLinter/linter-pylint",
   "license": "MIT",
   "scripts": {
+    "test": "apm test",
     "lint": "coffeelint lib & eslint spec"
   },
   "engines": {
@@ -26,14 +27,15 @@
   },
   "devDependencies": {
     "coffeelint": "^1.15.0",
-    "eslint": "^2.4.0",
-    "eslint-config-airbnb": "^7.0.0"
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb-base": "^2.0.0",
+    "eslint-plugin-import": "^1.6.1"
   },
   "package-deps": [
     "linter"
   ],
   "eslintConfig": {
-    "extends": "airbnb/base",
+    "extends": "airbnb-base",
     "globals": {
       "atom": true
     },
