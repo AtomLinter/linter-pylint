@@ -5,10 +5,9 @@ import * as path from 'path';
 const goodPath = path.join(__dirname, 'files', 'good.py');
 const badPath = path.join(__dirname, 'files', 'bad.py');
 const emptyPath = path.join(__dirname, 'files', 'empty.py');
+const lint = require('../lib/main.coffee').provideLinter().lint;
 
 describe('The pylint provider for Linter', () => {
-  const lint = require('../lib/main').provideLinter().lint;
-
   beforeEach(() => {
     waitsForPromise(() =>
       Promise.all([
