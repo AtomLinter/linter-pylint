@@ -12,26 +12,24 @@ module.exports =
       description: 'Command or path to executable. Use %p for current project directory (no trailing /).'
     pythonPath:
       type: 'string'
-      default: ''
-      description: 'Paths to be added to $PYTHONPATH. Use %p for current project directory or %f for the directory of
-        the current file.'
+      default: '%(PYTHONPATH), %f, %p'
+      description: 'Comma delimited list of paths to set $PYTHONPATH to. Use %p for current project directory,
+        %f for the directory of the current file, or %(VAR_NAME) to use a pre-existing environment variable.'
     rcFile:
       type: 'string'
       default: ''
-      description: 'Path to pylintrc file. Use %p for the current project directory or %f for the directory of the
-        current file.'
+      description: 'Path to pylintrc file. Use %p for current project directory, %f for the directory of the
+        current file, or %(VAR_NAME) to use a pre-existing environment variable.'
     workingDirectory:
       type: 'string'
       default: '%p'
-      description: 'Directory pylint is run from. Use %p for the current project directory or %f for the directory
-        of the current file.'
+      description: 'Directory pylint is run from. Use %p for current project directory, %f for the directory of
+        the current file, or %(VAR_NAME) to use a pre-existing environment variable.'
     messageFormat:
       type: 'string'
       default: '%i %m'
-      description:
-        'Format for Pylint messages where %m is the message, %i is the
-        numeric mesasge ID (e.g. W0613) and %s is the human-readable
-        message ID (e.g. unused-argument).'
+      description: 'Format for Pylint messages where %m is the message, %i is the numeric mesasge ID
+        (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).'
 
   activate: ->
     require('atom-package-deps').install('linter-pylint')
@@ -53,6 +51,10 @@ module.exports =
         @cwd = _.trim newCwd, path.delimiter
 
     @regex = '(?<line>\\d+),(?<col>\\d+),(?<type>\\w+),(\\w\\d+):(?<message>.*)\\r?(\\n|$)'
+    @messageFormatFlags =
+      i: '{msg_id}',
+      m: '{msg}',
+      s: '{symbol}'
 
     @errorWhitelist = [
       /^No config file found, using default configuration$/
@@ -69,40 +71,60 @@ module.exports =
       lintOnFly: true
       lint: (activeEditor) =>
         file = activeEditor.getPath()
+
         return helpers.tempFile path.basename(file), activeEditor.getText(), (tmpFilename) =>
           # default project dir to file directory if path cannot be determined
-          projDir = @getProjDir(file) or path.dirname(file)
           fileDir = path.dirname(file)
-          cwd = @cwd.replace(/%f/g, fileDir).replace(/%p/g, projDir)
-          executable = @executable.replace(/%p/g, projDir)
-          pythonPath = @pythonPath.replace(/%f/g, fileDir).replace(/%p/g, projDir)
-          env = Object.create process.env,
-            PYTHONPATH:
-              value: _.compact([process.env.PYTHONPATH, fileDir, projDir, pythonPath]).join path.delimiter
-              enumerable: true
-          format = @messageFormat
-          for pattern, value of {'%m': 'msg', '%i': 'msg_id', '%s': 'symbol'}
-            format = format.replace(new RegExp(pattern, 'g'), "{#{value}}")
+          replaceFlags =
+            f: fileDir
+            p: @getProjDir(file) or fileDir
+
+          # Replace special flags in user configurable values
+          cwd = @replaceVars(@cwd, replaceFlags, process.env)
+          executable = @replaceVars(@executable, replaceFlags, process.env)
+          format = @replaceVars(@messageFormat, @messageFormatFlags, {})
+          pythonFlags = @replaceVars(@pythonPath, replaceFlags, process.env)
+
+          # Construct arguments for pylint
           args = [
             "--msg-template='{line},{column},{category},{msg_id}:#{format}'"
             '--reports=n'
             '--output-format=text'
           ]
+
           if @rcFile
-            rcFile = @rcFile.replace(/%p/g, projDir).replace(/%f/g, fileDir)
+            rcFile = @replaceVars(@rcFile, replaceFlags, process.env)
             args.push "--rcfile=#{rcFile}"
+
           args.push tmpFilename
+
+          # Warning: This may cause to pylint to crash if a file exists in any of the path that
+          # shadows standard library imports pylint and its dependencies use such as keyword.py
+          env = Object.create process.env,
+            PYTHONPATH:
+              value: _.compact(_.trim(pythonFlags).split(/\s*,\s*/g)).join(path.delimiter)
+              enumerable: true
+
           return helpers.exec(executable, args, {env: env, cwd: cwd, stream: 'both'}).then (data) =>
             filteredErrors = @filterWhitelistedErrors(data.stderr)
             throw new Error(filteredErrors) if filteredErrors
+
             helpers.parse(data.stdout, @regex, {filePath: file})
               .filter((lintIssue) -> lintIssue.type isnt 'info')
               .map (lintIssue) ->
                 [[lineStart, colStart], [lineEnd, colEnd]] = lintIssue.range
+
                 if lineStart is lineEnd and colStart <= colEnd <= 0
                   return _.merge {}, lintIssue,
                     range: helpers.rangeFromLineNumber activeEditor, lineStart, colStart
+
                 lintIssue
+
+  replaceVars: (string, data, longKeyData) ->
+    # Escapes required for terrible env names like PROGRAMFILES(X86): %(PROGRAMFILES\\(X86\\))
+    string.replace /%(\w|\((([^()\\]|(\\(\\{2})*([()\\])))+)\))/g, (str, key, longKey) ->
+      ret = if longKey then longKeyData[longKey.replace(/\\([\\()])/g, '$1')] else data[key]
+      ret ? ''
 
   getProjDir: (filePath) ->
     atom.project.relativizePath(filePath)[0]
