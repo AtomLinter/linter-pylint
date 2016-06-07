@@ -5,7 +5,7 @@ import * as path from 'path';
 const goodPath = path.join(__dirname, 'files', 'good.py');
 const badPath = path.join(__dirname, 'files', 'bad.py');
 const emptyPath = path.join(__dirname, 'files', 'empty.py');
-const lint = require('../lib/main.coffee').provideLinter().lint;
+const lint = require('../lib/main.js').provideLinter().lint;
 
 describe('The pylint provider for Linter', () => {
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('The pylint provider for Linter', () => {
         atom.packages.activatePackage('linter-pylint'),
         atom.packages.activatePackage('language-python').then(() =>
           atom.workspace.open(goodPath)
-        )
+        ),
       ])
     );
   });
