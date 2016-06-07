@@ -1,6 +1,6 @@
 {
   "name": "linter-pylint",
-  "main": "./lib/main.coffee",
+  "main": "./lib/main.js",
   "version": "1.2.0",
   "private": true,
   "description": "Lint python on the fly, using pylint",
@@ -8,10 +8,37 @@
   "license": "MIT",
   "scripts": {
     "test": "apm test",
-    "lint": "coffeelint lib & eslint spec"
+    "lint": "eslint ."
   },
   "engines": {
-    "atom": ">=1.0.0 <2.0.0"
+    "atom": ">=1.4.0 <2.0.0"
+  },
+  "configSchema": {
+    "executable": {
+      "type": "string",
+      "default": "pylint",
+      "description": "Command or path to executable. Use %p for current project directory (no trailing /)."
+    },
+    "pythonPath": {
+      "type": "string",
+      "default": "",
+      "description": "Paths to be added to $PYTHONPATH. Use %p for current project directory or %f for the directory of the current file."
+    },
+    "rcFile": {
+      "type": "string",
+      "default": "",
+      "description": "Path to pylintrc file. Use %p for the current project directory or %f for the directory of the current file."
+    },
+    "workingDirectory": {
+      "type": "string",
+      "default": "%p",
+      "description": "Directory pylint is run from. Use %p for the current project directory or %f for the directory of the current file."
+    },
+    "messageFormat": {
+      "type": "string",
+      "default": "%i %m",
+      "description": "Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument)."
+    }
   },
   "providedServices": {
     "linter": {
@@ -23,18 +50,28 @@
   "dependencies": {
     "atom-linter": "^5.0.1",
     "atom-package-deps": "^4.0.1",
-    "lodash": "^4.6.1"
+    "lazy-req": "^1.1.0"
   },
   "devDependencies": {
-    "coffeelint": "^1.15.0",
-    "eslint": "^2.9.0",
+    "eslint": "^2.11.1",
     "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.7.0"
+    "eslint-plugin-import": "^1.8.1"
   },
   "package-deps": [
     "linter"
   ],
   "eslintConfig": {
+    "rules": {
+      "global-require": 0,
+      "import/no-unresolved": [
+        2,
+        {
+          "ignore": [
+            "atom"
+          ]
+        }
+      ]
+    },
     "extends": "airbnb-base",
     "globals": {
       "atom": true
@@ -42,9 +79,6 @@
     "env": {
       "es6": true,
       "node": true
-    },
-    "rules": {
-      "comma-dangle": 0
     }
   }
 }
