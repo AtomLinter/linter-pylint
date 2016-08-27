@@ -53,9 +53,9 @@
     "lazy-req": "^1.1.0"
   },
   "devDependencies": {
-    "eslint": "^2.11.1",
+    "eslint": "^3.0.1",
     "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.8.1"
+    "eslint-plugin-import": "^1.10.2"
   },
   "package-deps": [
     "linter"
