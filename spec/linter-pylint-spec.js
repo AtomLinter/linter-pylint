@@ -31,7 +31,7 @@ describe('The pylint provider for Linter', () => {
     let editor = null;
     beforeEach(() => {
       waitsForPromise(() =>
-        atom.workspace.open(badPath).then(openEditor => {
+        atom.workspace.open(badPath).then((openEditor) => {
           editor = openEditor;
         })
       );
@@ -39,15 +39,13 @@ describe('The pylint provider for Linter', () => {
 
     it('finds at least one message', () =>
       waitsForPromise(() =>
-        lint(editor).then(messages => {
-          expect(messages.length).toBeGreaterThan(0);
-        })
+        lint(editor).then(messages => expect(messages.length).toBeGreaterThan(0))
       )
     );
 
     it('verifies that message', () =>
       waitsForPromise(() =>
-        lint(editor).then(messages => {
+        lint(editor).then((messages) => {
           expect(messages[0].type).toBe('convention');
           expect(messages[0].html).not.toBeDefined();
           expect(messages[0].text).toBe('C0111 Missing module docstring');
@@ -61,9 +59,7 @@ describe('The pylint provider for Linter', () => {
   it('finds nothing wrong with an empty file', () => {
     waitsForPromise(() =>
       atom.workspace.open(emptyPath).then(editor =>
-        lint(editor).then(messages => {
-          expect(messages.length).toBe(0);
-        })
+        lint(editor).then(messages => expect(messages.length).toBe(0))
       )
     );
   });
@@ -71,9 +67,7 @@ describe('The pylint provider for Linter', () => {
   it('finds nothing wrong with a valid file', () => {
     waitsForPromise(() =>
       atom.workspace.open(goodPath).then(editor =>
-        lint(editor).then(messages => {
-          expect(messages.length).toBe(0);
-        })
+        lint(editor).then(messages => expect(messages.length).toBe(0))
       )
     );
   });
