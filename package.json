@@ -53,17 +53,17 @@
     "lazy-req": "^1.1.0"
   },
   "devDependencies": {
-    "eslint": "^3.5.0",
-    "eslint-config-airbnb-base": "^7.1.0",
-    "eslint-plugin-import": "^1.15.0"
+    "eslint": "^3.6.0",
+    "eslint-config-airbnb-base": "^8.0.0",
+    "eslint-plugin-import": "^1.16.0"
   },
   "package-deps": [
     "linter"
   ],
   "eslintConfig": {
+    "extends": "airbnb-base",
     "rules": {
       "global-require": "off",
-      "import/no-extraneous-dependencies": "off",
       "import/no-unresolved": [
         "error",
         {
@@ -73,12 +73,10 @@
         }
       ]
     },
-    "extends": "airbnb-base",
     "globals": {
       "atom": true
     },
     "env": {
-      "es6": true,
       "node": true
     }
   }
