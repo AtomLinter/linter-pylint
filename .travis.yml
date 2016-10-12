@@ -16,7 +16,7 @@ matrix:
       env: ATOM_CHANNEL=stable
       before_install:
         - brew update
-        - brew install python
+        - brew list python || brew install python
 
 install:
   - pip install pylint
@@ -25,7 +25,10 @@ before_script:
   - pylint --version
 
 ### Generic setup follows ###
-script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
+script:
+  - curl -s -O https://raw.githubusercontent.com/atom/ci/master/build-package.sh
+  - chmod u+x build-package.sh
+  - ./build-package.sh
 
 notifications:
   email:
