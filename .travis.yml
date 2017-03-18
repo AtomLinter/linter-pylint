@@ -8,15 +8,8 @@ matrix:
 
     - os: linux
       language: python
-      python: "3.5"
+      python: "3.6"
       env: ATOM_CHANNEL=beta
-
-    - os: osx
-      language: generic
-      env: ATOM_CHANNEL=stable
-      before_install:
-        - brew update
-        - brew list python || brew install python
 
 install:
   - pip install pylint
@@ -38,6 +31,7 @@ notifications:
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 
 git:
   depth: 10
