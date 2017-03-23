@@ -46,11 +46,20 @@ describe('The pylint provider for Linter', () => {
     it('verifies that message', () =>
       waitsForPromise(() =>
         lint(editor).then((messages) => {
-          expect(messages[0].type).toBe('convention');
-          expect(messages[0].html).not.toBeDefined();
-          expect(messages[0].text).toBe('C0111 Missing module docstring');
-          expect(messages[0].filePath).toBe(badPath);
-          expect(messages[0].range).toEqual([[0, 0], [0, 4]]);
+          expect(messages[0].severity).toBe('info');
+          expect(messages[0].excerpt).toBe('C0111 Missing module docstring');
+          expect(messages[0].location.file).toBe(badPath);
+          expect(messages[0].location.range).toEqual([[0, 0], [0, 4]]);
+
+          expect(messages[1].severity).toBe('warning');
+          expect(messages[1].excerpt).toBe('W0104 Statement seems to have no effect');
+          expect(messages[1].location.file).toBe(badPath);
+          expect(messages[1].location.range).toEqual([[0, 0], [0, 4]]);
+
+          expect(messages[2].severity).toBe('error');
+          expect(messages[2].excerpt).toBe("E0602 Undefined variable 'asfd'");
+          expect(messages[2].location.file).toBe(badPath);
+          expect(messages[2].location.range).toEqual([[0, 0], [0, 4]]);
         }),
       ),
     );
