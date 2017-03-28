@@ -43,13 +43,6 @@
       "default": "%i %m",
       "description": "Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).",
       "order": 2
-    },
-    "disableTimeout": {
-      "title": "Disable Execution Timeout",
-      "type": "boolean",
-      "default": false,
-      "description": "By default processes running longer than 10 seconds will be automatically terminated. Enable this option if you are getting messages about process execution timing out.",
-      "order": 3
     }
   },
   "providedServices": {
