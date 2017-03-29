@@ -14,42 +14,54 @@
     "atom": ">=1.4.0 <2.0.0"
   },
   "configSchema": {
-    "executable": {
+    "executablePath": {
       "type": "string",
       "default": "pylint",
-      "description": "Command or path to executable. Use %p for current project directory (no trailing /)."
+      "description": "Command or full path to pylint. Use %p for current project directory (no trailing /).",
+      "order": 1
     },
     "pythonPath": {
       "type": "string",
       "default": "",
-      "description": "Paths to be added to $PYTHONPATH. Use %p for current project directory or %f for the directory of the current file."
+      "description": "Paths to be added to $PYTHONPATH. Use %p for current project directory or %f for the directory of the current file.",
+      "order": 1
     },
     "rcFile": {
       "type": "string",
       "default": "",
-      "description": "Path to pylintrc file. Use %p for the current project directory or %f for the directory of the current file."
+      "description": "Path to pylintrc file. Use %p for the current project directory or %f for the directory of the current file.",
+      "order": 2
     },
     "workingDirectory": {
       "type": "string",
       "default": "%p",
-      "description": "Directory pylint is run from. Use %p for the current project directory or %f for the directory of the current file."
+      "description": "Directory pylint is run from. Use %p for the current project directory or %f for the directory of the current file.",
+      "order": 2
     },
     "messageFormat": {
       "type": "string",
       "default": "%i %m",
-      "description": "Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument)."
+      "description": "Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).",
+      "order": 2
+    },
+    "disableTimeout": {
+      "title": "Disable Execution Timeout",
+      "type": "boolean",
+      "default": false,
+      "description": "By default processes running longer than 10 seconds will be automatically terminated. Enable this option if you are getting messages about process execution timing out.",
+      "order": 3
     }
   },
   "providedServices": {
     "linter": {
       "versions": {
-        "1.0.0": "provideLinter"
+        "2.0.0": "provideLinter"
       }
     }
   },
   "dependencies": {
     "atom-linter": "^9.0.0",
-    "atom-package-deps": "^4.0.1",
+    "atom-package-deps": "^4.5.0",
     "lazy-req": "^2.0.0"
   },
   "devDependencies": {
@@ -58,7 +70,7 @@
     "eslint-plugin-import": "^2.2.0"
   },
   "package-deps": [
-    "linter"
+    "linter:2.0.0"
   ],
   "eslintConfig": {
     "extends": "airbnb-base",
