@@ -1,18 +1,25 @@
 # Change Log
 
+## [v2.0.1](https://github.com/AtomLinter/linter-pylint/tree/v2.0.1) (2017-03-30)
+[Full Changelog](https://github.com/AtomLinter/linter-pylint/compare/v2.0.0...v2.0.1)
+
+**Fixed bugs:**
+
+- linter-pylint wont work after update to 2.0.0 [\#206](https://github.com/AtomLinter/linter-pylint/issues/206)
+- Rename range to position [\#207](https://github.com/AtomLinter/linter-pylint/pull/207) ([Arcanemagus](https://github.com/Arcanemagus))
+
 ## [v2.0.0](https://github.com/AtomLinter/linter-pylint/tree/v2.0.0) (2017-03-29)
 [Full Changelog](https://github.com/AtomLinter/linter-pylint/compare/v1.2.3...v2.0.0)
 
 **Implemented enhancements:**
 
 - Error running Pylint Error: Process execution timed out [\#204](https://github.com/AtomLinter/linter-pylint/issues/204)
-- Rename executable to executablePath [\#153](https://github.com/AtomLinter/linter-pylint/issues/153)
 - PyLint console does not contain any web hyperlinks + unable to copy/paste [\#77](https://github.com/AtomLinter/linter-pylint/issues/77)
+- Rename executable to executablePath [\#153](https://github.com/AtomLinter/linter-pylint/issues/153)
 - Linter v2 [\#205](https://github.com/AtomLinter/linter-pylint/pull/205) ([Arcanemagus](https://github.com/Arcanemagus))
 
 **Fixed bugs:**
 
-- IOError using %p/%f in rcFile [\#199](https://github.com/AtomLinter/linter-pylint/issues/199)
 - Relative imports not working \(Django\) [\#110](https://github.com/AtomLinter/linter-pylint/issues/110)
 -  Bad warning: C0103 invalid module name "atom-linter\_7080..." at line 1 col 0 in .../\_\_init\_\_.py [\#57](https://github.com/AtomLinter/linter-pylint/issues/57)
 - Linter v2 [\#205](https://github.com/AtomLinter/linter-pylint/pull/205) ([Arcanemagus](https://github.com/Arcanemagus))
