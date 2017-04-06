@@ -17,7 +17,7 @@
     "executablePath": {
       "type": "string",
       "default": "pylint",
-      "description": "Command or full path to pylint. Use %p for current project directory (no trailing /).",
+      "description": "Command or full path to pylint. Use %p for current project directory (no trailing /) or %h for current project name.",
       "order": 1
     },
     "pythonPath": {
