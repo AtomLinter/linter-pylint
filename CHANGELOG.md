@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2.1.0](https://github.com/AtomLinter/linter-pylint/tree/v2.1.0) (2017-05-10)
+[Full Changelog](https://github.com/AtomLinter/linter-pylint/compare/v2.0.1...v2.1.0)
+
+**Implemented enhancements:**
+
+- Update atom-linter to v10.0.0 🚀 [\#211](https://github.com/AtomLinter/linter-pylint/pull/211) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Add path placeholder for project name [\#210](https://github.com/AtomLinter/linter-pylint/pull/210) ([nrth](https://github.com/nrth))
+
+**Fixed bugs:**
+
+- PYTHONPATH hacks break inner pylint imports [\#104](https://github.com/AtomLinter/linter-pylint/issues/104)
+- Remove hardcoded PYTHONPATH hack. [\#213](https://github.com/AtomLinter/linter-pylint/pull/213) ([ddaanet](https://github.com/ddaanet))
+
 ## [v2.0.1](https://github.com/AtomLinter/linter-pylint/tree/v2.0.1) (2017-03-30)
 [Full Changelog](https://github.com/AtomLinter/linter-pylint/compare/v2.0.0...v2.0.1)
 
@@ -31,7 +44,7 @@
 
 - Update eslint-config-airbnb-base to v11.1.1 [\#203](https://github.com/AtomLinter/linter-pylint/pull/203) ([Arcanemagus](https://github.com/Arcanemagus))
 - Update CI configuration [\#202](https://github.com/AtomLinter/linter-pylint/pull/202) ([Arcanemagus](https://github.com/Arcanemagus))
-- Update atom-linter to the latest version 🚀 [\#198](https://github.com/AtomLinter/linter-pylint/pull/198) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
+- Update atom-linter to v9.0.0 🚀 [\#198](https://github.com/AtomLinter/linter-pylint/pull/198) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
 - Update dependencies to enable Greenkeeper 🌴 [\#196](https://github.com/AtomLinter/linter-pylint/pull/196) ([greenkeeper[bot]](https://github.com/integration/greenkeeper))
 - Update eslint-config-airbnb-base to version 8.0.0 🚀 [\#186](https://github.com/AtomLinter/linter-pylint/pull/186) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
