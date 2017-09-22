@@ -6,7 +6,7 @@ const goodPath = path.join(__dirname, 'files', 'good.py');
 const badPath = path.join(__dirname, 'files', 'bad.py');
 const emptyPath = path.join(__dirname, 'files', 'empty.py');
 
-const lint = require('../lib/main.js').provideLinter().lint;
+const { lint } = require('../lib/main.js').provideLinter();
 
 const wikiURLBase = 'http://pylint-messages.wikidot.com/messages:';
 
@@ -16,19 +16,15 @@ describe('The pylint provider for Linter', () => {
       Promise.all([
         atom.packages.activatePackage('linter-pylint'),
         atom.packages.activatePackage('language-python').then(() =>
-          atom.workspace.open(goodPath),
-        ),
-      ]),
-    );
+          atom.workspace.open(goodPath)),
+      ]));
   });
 
   it('should be in the packages list', () =>
-    expect(atom.packages.isPackageLoaded('linter-pylint')).toBe(true),
-  );
+    expect(atom.packages.isPackageLoaded('linter-pylint')).toBe(true));
 
   it('should be an active package', () =>
-    expect(atom.packages.isPackageActive('linter-pylint')).toBe(true),
-  );
+    expect(atom.packages.isPackageActive('linter-pylint')).toBe(true));
 
   describe('checks bad.py and', () => {
     let editor = null;
@@ -36,15 +32,12 @@ describe('The pylint provider for Linter', () => {
       waitsForPromise(() =>
         atom.workspace.open(badPath).then((openEditor) => {
           editor = openEditor;
-        }),
-      );
+        }));
     });
 
     it('finds at least one message', () =>
       waitsForPromise(() =>
-        lint(editor).then(messages => expect(messages.length).toBeGreaterThan(0)),
-      ),
-    );
+        lint(editor).then(messages => expect(messages.length).toBeGreaterThan(0))));
 
     it('verifies that message', () =>
       waitsForPromise(() =>
@@ -66,24 +59,18 @@ describe('The pylint provider for Linter', () => {
           expect(messages[2].location.file).toBe(badPath);
           expect(messages[2].location.position).toEqual([[0, 0], [0, 4]]);
           expect(messages[2].url).toBe(`${wikiURLBase}E0602`);
-        }),
-      ),
-    );
+        })));
   });
 
   it('finds nothing wrong with an empty file', () => {
     waitsForPromise(() =>
       atom.workspace.open(emptyPath).then(editor =>
-        lint(editor).then(messages => expect(messages.length).toBe(0)),
-      ),
-    );
+        lint(editor).then(messages => expect(messages.length).toBe(0))));
   });
 
   it('finds nothing wrong with a valid file', () => {
     waitsForPromise(() =>
       atom.workspace.open(goodPath).then(editor =>
-        lint(editor).then(messages => expect(messages.length).toBe(0)),
-      ),
-    );
+        lint(editor).then(messages => expect(messages.length).toBe(0))));
   });
 });
