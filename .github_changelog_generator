@@ -1,0 +1,5 @@
+user=Atomlinter
+project=linter-pylint
+unreleased=true
+future-release=v2.1.1
+exclude_labels=duplicate,question,invalid,wontfix,Duplicate,Question,Invalid,Wontfix,External,Unable to Reproduce,needs info
