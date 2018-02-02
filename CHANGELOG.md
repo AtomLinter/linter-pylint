@@ -1,5 +1,22 @@
 # Change Log
 
+## [v2.1.1](https://github.com/Atomlinter/linter-pylint/tree/v2.1.1) (2018-02-01)
+
+[Full Changelog](https://github.com/Atomlinter/linter-pylint/compare/v2.1.0...v2.1.1)
+
+**Implemented enhancements:**
+
+- Asyncify the specs [\#229](https://github.com/AtomLinter/linter-pylint/pull/229) ([Arcanemagus](https://github.com/Arcanemagus))
+- Update eslint-config-airbnb-base to version 12.0.0 🚀 [\#228](https://github.com/AtomLinter/linter-pylint/pull/228) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update eslint to version 4.3.0 🚀 [\#222](https://github.com/AtomLinter/linter-pylint/pull/222) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
+**Fixed bugs:**
+
+- linting fails when .pylintrc is present [\#236](https://github.com/AtomLinter/linter-pylint/issues/236)
+- Pylint-1.6.4 deprecation warnings [\#185](https://github.com/AtomLinter/linter-pylint/issues/185)
+- Fix error whitelist [\#237](https://github.com/AtomLinter/linter-pylint/pull/237) ([gucciferXCIV](https://github.com/gucciferXCIV))
+- Update Travis CI configuration [\#227](https://github.com/AtomLinter/linter-pylint/pull/227) ([Arcanemagus](https://github.com/Arcanemagus))
+
 ## [v2.1.0](https://github.com/Atomlinter/linter-pylint/tree/v2.1.0) (2017-05-10)
 
 [Full Changelog](https://github.com/Atomlinter/linter-pylint/compare/v2.0.1...v2.1.0)

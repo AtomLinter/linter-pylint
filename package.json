@@ -1,7 +1,7 @@
 {
   "name": "linter-pylint",
   "main": "./lib/main.js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "private": true,
   "description": "Lint python on the fly, using pylint",
   "repository": "https://github.com/AtomLinter/linter-pylint",
