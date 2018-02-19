@@ -19,7 +19,8 @@ This package will lint your opened Python-files in Atom, using [pylint](https://
 * **Python Path** Paths to be added to the `PYTHONPATH` environment variable. Use `%p` for the current project
   directory (e.g. `%p/vendor`) or `%f` for the directory of the current
   file location.
-* **Rc File** Path to pylintrc file. Use `%p` for the current project directory or `%f` for the directory of the current
+* **Rc File** Path to pylintrc file. This field can specify multiple files by separating with `;`. The first valid
+  file path will be used. Use `%p` for the current project directory or `%f` for the directory of the current
   file location.
 * **Working Directory** Directory pylint is run from. Use `%p` for the current project directory or `%f` for the
   directory of the current file.
