@@ -17,7 +17,7 @@
     "executablePath": {
       "type": "string",
       "default": "pylint",
-      "description": "Command or full path to pylint. Use %p for current project directory (no trailing /) or %h for current project name.",
+      "description": "Command or semicolon-separated list of paths to a binary (e.g. `/usr/local/bin/pylint`). Use `%p` for current project directory or `$h` for current project name (e.g. `%p/.venv/bin/pylint;/usr/bin/pylint`).",
       "order": 1
     },
     "pythonPath": {
