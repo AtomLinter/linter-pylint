@@ -17,31 +17,31 @@
     "executablePath": {
       "type": "string",
       "default": "pylint",
-      "description": "Command or full path to pylint. Use %p for current project directory (no trailing /) or %h for current project name.",
+      "description": "Command or full path to pylint. Use `%PROJECT` for current project directory (no trailing /) or `%PROJECT_NAME` for current project name.",
       "order": 1
     },
     "pythonPath": {
       "type": "string",
       "default": "",
-      "description": "Paths to be added to $PYTHONPATH. Use %p for current project directory or %f for the directory of the current file.",
+      "description": "Paths to be added to $PYTHONPATH. Use `%PROJECT` for current project directory or `%f` for the directory of the current file.",
       "order": 1
     },
     "rcFile": {
       "type": "string",
       "default": "",
-      "description": "Path to pylintrc file. Use %p for the current project directory or %f for the directory of the current file.",
+      "description": "Path to pylintrc file. Use `%PROJECT` for the current project directory or `%f` for the directory of the current file.",
       "order": 2
     },
     "workingDirectory": {
       "type": "string",
-      "default": "%p",
-      "description": "Directory pylint is run from. Use %p for the current project directory or %f for the directory of the current file.",
+      "default": "%PROJECT",
+      "description": "Directory pylint is run from. Use `%PROJECT` for the current project directory or `%f` for the directory of the current file.",
       "order": 2
     },
     "messageFormat": {
       "type": "string",
       "default": "%i %m",
-      "description": "Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).",
+      "description": "Format for Pylint messages where `%m` is the message, `%i` is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).",
       "order": 2
     },
     "disableTimeout": {

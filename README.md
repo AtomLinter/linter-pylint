@@ -13,17 +13,18 @@ This package will lint your opened Python-files in Atom, using [pylint](https://
 
 ## Configuration
 * **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2
-  and 3 or if you are using a virtualenv. Use `%p` for the current project (no trailing /).
+  and 3 or if you are using a virtualenv. Use `%PROJECT` for the current project (no trailing /).
 * **Message Format** Format for Pylint messages where `%m` is the message, `%i` is the numeric message ID (e.g. W0613)
   and `%s` is the human-readable message ID (e.g. unused-argument).
-* **Python Path** Paths to be added to the `PYTHONPATH` environment variable. Use `%p` for the current project
-  directory (e.g. `%p/vendor`) or `%f` for the directory of the current
+* **Python Path** Paths to be added to the `PYTHONPATH` environment variable. Use `%PROJECT` for the current project
+  directory (e.g. `%PROJECT/vendor`) or `%f` for the directory of the current
   file location.
-* **Rc File** Path to pylintrc file. Use `%p` for the current project directory or `%f` for the directory of the current
-  file location.
-* **Working Directory** Directory pylint is run from. Use `%p` for the current project directory or `%f` for the
+* **Rc File** Path to pylintrc file. Use `%PROJECT` for the current project directory or `%f` for the directory of the
+  current file location.
+* **Working Directory** Directory pylint is run from. Use `%PROJECT` for the current project directory or `%f` for the
   directory of the current file.
-* `%p` will fallback to the current file's directory (equivilent to `%f`) if no project directory can be determined.
+* `%PROJECT` will fallback to the current file's directory (equivilent to `%f`) if no project directory can be
+  determined.
 
 ## Other available linters
 There are other linters available - take a look at the linters [mainpage](https://github.com/steelbrain/linter).
