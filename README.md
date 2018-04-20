@@ -14,6 +14,8 @@ This package will lint your opened Python-files in Atom, using [pylint](https://
 ## Configuration
 * **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2
   and 3 or if you are using a virtualenv. Use `%p` for the current project (no trailing /).
+* **Additional Args** Additional arguments that will be passed into
+  pylint command (like `--load-plugins=pylint_django`).
 * **Message Format** Format for Pylint messages where `%m` is the message, `%i` is the numeric message ID (e.g. W0613)
   and `%s` is the human-readable message ID (e.g. unused-argument).
 * **Python Path** Paths to be added to the `PYTHONPATH` environment variable. Use `%p` for the current project
