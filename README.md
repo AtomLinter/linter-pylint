@@ -8,8 +8,8 @@ This package will lint your opened Python-files in Atom, using [pylint](https://
 
 ## Installation
 
-* Install [pylint](http://www.pylint.org/#install).
-* `$ apm install linter-pylint`
+1. Install [pylint](http://www.pylint.org/#install).
+2. `$ apm install linter-pylint`
 
 ## Configuration
 * **Executable** Path to your pylint executable. This is useful if you have different versions of pylint for Python 2
