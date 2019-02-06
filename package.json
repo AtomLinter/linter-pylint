@@ -73,6 +73,11 @@
   "package-deps": [
     "linter:2.0.0"
   ],
+  "renovate": {
+    "extends": [
+      "config:base"
+    ]
+  },
   "eslintConfig": {
     "extends": "airbnb-base",
     "rules": {
