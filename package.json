@@ -29,7 +29,7 @@
     "rcFile": {
       "type": "string",
       "default": "",
-      "description": "Path to pylintrc file. Use %p for the current project directory or %f for the directory of the current file.",
+      "description": "Path to pylintrc file. Use %p for the current project directory or %f for the directory of the current file. Specify multiple files separate with ; and the first valid will be used.",
       "order": 2
     },
     "workingDirectory": {
