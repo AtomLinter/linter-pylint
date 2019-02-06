@@ -1,8 +1,10 @@
 'use babel';
 
 import * as path from 'path';
-// eslint-disable-next-line no-unused-vars
-import { it, fit, wait, beforeEach, afterEach } from 'jasmine-fix';
+import {
+  // eslint-disable-next-line no-unused-vars
+  it, fit, wait, beforeEach, afterEach,
+} from 'jasmine-fix';
 
 const goodPath = path.join(__dirname, 'files', 'good.py');
 const badPath = path.join(__dirname, 'files', 'bad.py');
@@ -18,11 +20,13 @@ describe('The pylint provider for Linter', () => {
     await atom.packages.activatePackage('language-python');
   });
 
-  it('should be in the packages list', () =>
-    expect(atom.packages.isPackageLoaded('linter-pylint')).toBe(true));
+  it('should be in the packages list', () => {
+    expect(atom.packages.isPackageLoaded('linter-pylint')).toBe(true);
+  });
 
-  it('should be an active package', () =>
-    expect(atom.packages.isPackageActive('linter-pylint')).toBe(true));
+  it('should be an active package', () => {
+    expect(atom.packages.isPackageActive('linter-pylint')).toBe(true);
+  });
 
   it('checks bad.py and reports the correct results', async () => {
     const editor = await atom.workspace.open(badPath);
