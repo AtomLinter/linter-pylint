@@ -41,7 +41,7 @@
     "messageFormat": {
       "type": "string",
       "default": "%i %m",
-      "description": "Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).",
+      "description": "Format for Pylint messages where %m is the message, %i is the numeric message ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).",
       "order": 2
     },
     "disableTimeout": {
