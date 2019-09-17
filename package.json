@@ -1,7 +1,7 @@
 {
   "name": "linter-pylint",
   "main": "./lib/main.js",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "description": "Lint python on the fly, using pylint",
   "repository": "https://github.com/AtomLinter/linter-pylint",
@@ -20,36 +20,42 @@
       "description": "Command or full path to pylint. Use %p for current project directory (no trailing /) or %h for current project name.",
       "order": 1
     },
+    "additionalArgs": {
+      "type": "string",
+      "default": "",
+      "description": "Additional pylint command arguments (e.g. '--load-plugins=pylint_django').",
+      "order": 2
+    },
     "pythonPath": {
       "type": "string",
       "default": "",
       "description": "Paths to be added to $PYTHONPATH. Use %p for current project directory or %f for the directory of the current file.",
-      "order": 1
+      "order": 3
     },
     "rcFile": {
       "type": "string",
       "default": "",
       "description": "Path to pylintrc file. Use %p for the current project directory or %f for the directory of the current file.",
-      "order": 2
+      "order": 4
     },
     "workingDirectory": {
       "type": "string",
       "default": "%p",
       "description": "Directory pylint is run from. Use %p for the current project directory or %f for the directory of the current file.",
-      "order": 2
+      "order": 5
     },
     "messageFormat": {
       "type": "string",
       "default": "%i %m",
       "description": "Format for Pylint messages where %m is the message, %i is the numeric mesasge ID (e.g. W0613) and %s is the human-readable message ID (e.g. unused-argument).",
-      "order": 2
+      "order": 6
     },
     "disableTimeout": {
       "title": "Disable Execution Timeout",
       "type": "boolean",
       "default": false,
       "description": "By default processes running longer than 10 seconds will be automatically terminated. Enable this option if you are getting messages about process execution timing out.",
-      "order": 3
+      "order": 7
     }
   },
   "providedServices": {
