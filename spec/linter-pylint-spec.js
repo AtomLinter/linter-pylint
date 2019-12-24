@@ -38,7 +38,7 @@ describe('The pylint provider for Linter', () => {
     expect(messages[0].excerpt).toMatch(/C011[14] Missing module docstring/);
     expect(messages[0].location.file).toBe(badPath);
     expect(messages[0].location.position).toEqual([[0, 0], [0, 4]]);
-    expect(messages[0].url).toBe(`${wikiURLBase}C0111`);
+    expect([`${wikiURLBase}C0111`, `${wikiURLBase}C0114`]).toContain(messages[0].url);
 
     expect(messages[1].severity).toBe('warning');
     expect(messages[1].excerpt).toBe('W0104 Statement seems to have no effect');
